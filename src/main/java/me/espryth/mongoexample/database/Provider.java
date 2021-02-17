@@ -1,5 +1,6 @@
-package me.espryth.mongo.database;
+package me.espryth.mongoexample.database;
 
 public interface Provider<T> {
+
     T get();
 }
