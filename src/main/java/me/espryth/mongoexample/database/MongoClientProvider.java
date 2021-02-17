@@ -1,14 +1,15 @@
 package me.espryth.mongoexample.database;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import me.espryth.mongoexample.Provider;
 
-public class MongoClientProvider implements Provider<MongoClient>{
+public class MongoClientProvider implements Provider<MongoClient> {
 
     private final MongoClient mongoClient;
 
     public MongoClientProvider(String uri) {
-        this.mongoClient = MongoClients.create(uri);
+        this.mongoClient = new MongoClient(new MongoClientURI(uri));
     }
 
     @Override
