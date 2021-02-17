@@ -1,2 +1,2 @@
 # mongo-example
-A simple repository to learn mongo database with morphiia.
+A simple repository to learn mongo database with morphia.
