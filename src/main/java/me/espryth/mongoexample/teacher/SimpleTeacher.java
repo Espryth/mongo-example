@@ -2,7 +2,7 @@ package me.espryth.mongoexample.teacher;
 
 import dev.morphia.annotations.Entity;
 
-@Entity(value = "teacher", noClassnameStored = true)
+@Entity(value = "teacher")
 public class SimpleTeacher implements Teacher{
 
     private String name;

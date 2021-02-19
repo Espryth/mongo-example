@@ -3,13 +3,12 @@ package me.espryth.mongoexample.student;
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
 import me.espryth.mongoexample.teacher.SimpleTeacher;
-import me.espryth.mongoexample.teacher.Teacher;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(value = "student", noClassnameStored = true)
+@Entity(value = "student")
 public class SimpleStudent implements Student{
 
     @Id private ObjectId id;

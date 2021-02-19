@@ -1,11 +1,10 @@
 package me.espryth.mongoexample;
 
-import com.mongodb.MongoClient;
+import com.mongodb.client.MongoClient;
 import dev.morphia.Datastore;
+import dev.morphia.DatastoreImpl;
 import dev.morphia.Morphia;
 import me.espryth.mongoexample.database.MongoClientProvider;
-import me.espryth.mongoexample.database.MorphiaDatastoreProvider;
-import me.espryth.mongoexample.database.MorphiaProvider;
 import me.espryth.mongoexample.database.repository.ObjectRepository;
 import me.espryth.mongoexample.database.repository.ObjectRepositoryProvider;
 import me.espryth.mongoexample.student.SimpleStudent;
@@ -23,11 +22,12 @@ public class MongoExample {
 
     public static void main(String... args) {
 
-        Provider<MongoClient> mongoClientProvider = new MongoClientProvider("uri");
-        Provider<Morphia> morphiaProvider = new MorphiaProvider();
-        Provider<Datastore> datastoreProvider= new MorphiaDatastoreProvider(morphiaProvider.get(), mongoClientProvider.get());
+        Provider<MongoClient> mongoClientProvider = new MongoClientProvider(
+                "mongodb://poto:poto123@pruebasmongo-shard-00-00.xmeac.mongodb.net:27017,pruebasmongo-shard-00-01.xmeac.mongodb.net:27017,pruebasmongo-shard-00-02.xmeac.mongodb.net:27017/Test?ssl=true&replicaSet=atlas-etlv8e-shard-0&authSource=admin&retryWrites=true&w=majority"
+        );
+        Datastore morphia = Morphia.createDatastore(mongoClientProvider.get(), "Test");
 
-        studentRepositoryProvider = new ObjectRepositoryProvider<>(datastoreProvider.get(), SimpleStudent.class);
+        studentRepositoryProvider = new ObjectRepositoryProvider<>(morphia, SimpleStudent.class);
 
     }
 
